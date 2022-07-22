@@ -1,4 +1,4 @@
-import json from "/news.json" assert{ type: "json" }
+import json from "./news.json" assert{ type: "json" }
 
 const main = document.getElementById("innerMain")
 
