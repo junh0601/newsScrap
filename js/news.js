@@ -1,8 +1,6 @@
 const htmlDate = document.getElementById("date")
 const htmlTime = document.getElementById("time")
 const main = document.getElementById("innerMain")
-
-const city = document.getElementById("city");
 const weather = document.getElementById("weather");
 
 const API_KEY = "d2aab5f5c4c9fe0fce6481b412cea172";
@@ -16,8 +14,7 @@ function onGeoOk(position) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      city.innerText = data.name;
-      weather.innerText = data.weather[0].main + " / " + data.main.temp
+      weather.innerText = data.weather[0].main + " / " + data.main.temp+"°C / "+ data.name
     });
 }
 function onGeoError() {
@@ -45,7 +42,7 @@ function getClock() {
 htmlDate.innerText = TextDate;
 
 
-
+//article
 
 let entireHtml =""
 
@@ -71,19 +68,19 @@ function quoutify (str) {
 fetch('https://raw.githubusercontent.com/junh0601/newsScrap/master/news.json')
   .then((response) => response.json())
   .then((data) => {
-    
         if(data.length===0){
             entireHtml="<center><h3>기사가 없습니다.</h3></center>"
         }else{
             data.forEach( (i) => {
                 let html = `
-                    <ul><center>
-                        <li><img class="news_img" src=${i.img}></li></center>
-                        <li><a href=${i.url} target="_blank">
+                    <div class="img_and_detail">
+                        <img class="news_img" src=${i.img}>
+                        <div class="div_detail">
                             <h3 class="news_title">${i.title}</h3>
-                        </a></li>
-                        <li><small>${i.date}</small></li>
-                    <li>
+                            <small>${i.date}</small>
+                        </div>
+                    </div>
+                    <div class="div_text">          
                 `;
 
                 i.article.forEach((x)=>{
@@ -92,11 +89,10 @@ fetch('https://raw.githubusercontent.com/junh0601/newsScrap/master/news.json')
                     `
                     html += texts
                 });
-                html += "</li></ul><hr>"
-                entireHtml += html;
+
+                html += `<a href=${i.url} target='_blank'>more</a></div><hr>`
+                entireHtml += html; 
             });
-
-
         }
         main.innerHTML = entireHtml;
 

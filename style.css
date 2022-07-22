@@ -4,8 +4,9 @@ ul{
 }
 
 .news_img{
-    width: 50%;
+    width: 30%;
     border-radius: 10px;
+    margin-right: 20px;
 }
 
 .news_title{
@@ -21,4 +22,25 @@ code{
 .quoute{
     background-color: #181818;
     border-radius: 5px;
+}
+
+.img_and_detail{
+    display: flex;
+    flex-direction: row;
+    justify-content:left;
+    align-items:center;
+    
+}
+
+.div_text{
+    font-size: small;
+}
+
+#time{
+    font-size:x-large;
+    font-weight: bolder;
+}
+
+#date{
+    font-weight:lighter;
 }
