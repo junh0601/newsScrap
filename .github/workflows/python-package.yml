@@ -21,10 +21,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run Scraper with python
-      run: 
-        python "Scraper.py"
-      with:
-        API_KEY : ${{API_KEY}}
+      run: |
+        python "scrap.py"
     - name: Commits
       run: |
         git config --local user.email "your@email"
@@ -35,4 +33,4 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         branch: 'master'
-        github_token: $ 
+        API_KEY : ${{API_KEY}}
