@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>요약 뉴스</title>
+  </head>
+  <body>
+    <header>
+      <h1 id="time"></h1>
+      <h4 id="date">오늘의 뉴스</h4>
+      <h4>
+        <span id="city"></span>
+        <span id="weather"></span>
+      </h4>
+    </header>
+    <main>
+      <div id="innerMain"></div>
+    </main>
+    <footer>
+      <center>
+        <small>기사 출처 | 연합뉴스-주요뉴스의 3줄 요약 스크래핑</small>
+      </center>
+      <center>&copy github.com/junh0601 <b>NEWS DIET Project</b></center>
+    </footer>
+    <script src="/js/timeAndDate.js" type="module"></script>
+    <script src="/js/news.js" type="module"></script>
+    <script src="/js/weather.js" type="module"></script>
+  </body>
+</html>
