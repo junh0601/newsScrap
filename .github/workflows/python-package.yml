@@ -21,8 +21,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run Scraper with python
-      run: |
+      run: 
         python "Scraper.py"
+      with:
+        API_KEY : ${{API_KEY}}
     - name: Commits
       run: |
         git config --local user.email "your@email"
