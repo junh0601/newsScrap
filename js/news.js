@@ -3,6 +3,25 @@ const main = document.getElementById("innerMain")
 let entireHtml =""
 
 
+function quoutify (str) {
+    
+    const splited = str.split("\"")
+
+    if (splited.length>=3){
+        splited.splice(1,0,"<span class='quoute'>");
+        splited.splice(3,0,"</span>");
+        splited.splice(5,0,"<span class='quoute'>");
+        splited.splice(7,0,"</span>");
+        splited.splice(9,0,"<span class='quoute'>");
+        splited.splice(11,0,"</span>");
+        return splited.join("")
+    }else {
+        return str
+    }
+}
+
+
+
 fetch('https://raw.githubusercontent.com/junh0601/newsScrap/master/news.json')
   .then((response) => response.json())
   .then((data) => {
@@ -23,7 +42,7 @@ fetch('https://raw.githubusercontent.com/junh0601/newsScrap/master/news.json')
 
                 i.article.forEach((x)=>{
                     const texts = `
-                        <p>${x}</p>
+                        <p>${quoutify(x)}</p>
                     `
                     html += texts
                 });
@@ -36,5 +55,4 @@ fetch('https://raw.githubusercontent.com/junh0601/newsScrap/master/news.json')
         main.innerHTML = entireHtml;
 
   });
-
 

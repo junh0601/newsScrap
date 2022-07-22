@@ -15,4 +15,10 @@ ul{
 
 code{
     background-color: #181818;
+    font-size: large;
+}
+
+.quoute{
+    background-color: #181818;
+    border-radius: 5px;
 }
