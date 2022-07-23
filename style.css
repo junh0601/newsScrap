@@ -54,9 +54,12 @@ hr{
     right: 0;
     text-align: right;
     padding: 20px;
+    display:flex;
+    justify-content: space-between;
 }
 
 #fixed a{
+    
     padding: 10px;
     border-radius: 15px;
     background-color: rgba(32,32,35, 0.9);
@@ -71,4 +74,9 @@ hr{
 
 header{
     margin-top: 0;
+}
+
+
+footer{
+    margin-bottom: 100px;
 }

@@ -25,7 +25,7 @@ jobs:
       - name: Commits
         run: |
           git config --local user.email "junh0601@naver.com"
-          git config --local user.name "Auto_Scraping_Name"
+          git config --local user.name "scraper_junh0601"
           git add news.json
           git commit -m "Auto - Update data with Scraping"
       - name: Push
