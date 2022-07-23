@@ -1,9 +1,18 @@
 name: Run Scraper - Update data # 워크플로우 이름 지정
 
 on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Person to greet"
+        required: true
+        default: "bossm0n5t3r"
+      home:
+        description: "location"
+        required: false
+        default: "The Octoverse"
   schedule:
     - cron: "*/60 * * * *" # 주기적으로 실행하기 위한 스케줄링 - cron 설정
-
 jobs:
   build:
     runs-on: ubuntu-latest
