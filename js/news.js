@@ -72,42 +72,72 @@ function quoutify (str) {
     }
 }
 
+import data from "../news.json" assert{ type: "json" };
 
-fetch('https://raw.githubusercontent.com/junh0601/newsScrap/master/news.json')
-  .then((response) => response.json())
-  .then((data) => {
-        if(data.length===0){
-            entireHtml=`<center><h3>기사가 없습니다.</h3></center>`
-        }else{
-            data.forEach( (i) => {
-                let html = `
-                    <div class="img_and_detail">
-                        <img class="news_img" src=${i.img}>
-                        <div class="div_detail">
-                            <h4 class="news_title">${i.title}</h4>
-                            <small>${i.date}</small>
-                        </div>
-                    </div>
-                    <div class="div_text">          
-                `;
+if(data.length===0){
+    entireHtml=`<center><h3>기사가 없습니다.</h3></center>`
+}else{
+    data.forEach( (i) => {
+        let html = `
+            <div class="img_and_detail">
+                <img class="news_img" src=${i.img}>
+                <div class="div_detail">
+                    <h4 class="news_title">${i.title}</h4>
+                    <small>${i.date}</small>
+                </div>
+            </div>
+            <div class="div_text">          
+        `;
 
-                i.article.forEach((x)=>{
-                    const texts = `
-                        <p>${quoutify(x)}</p>
-                    `
-                    html += texts
-                });
+        i.article.forEach((x)=>{
+            const texts = `
+                <p>${quoutify(x)}</p>
+            `
+            html += texts
+        });
 
-                html += `<a href=${i.url} target='_blank'>more</a></div><hr>`
-                entireHtml += html; 
-            });
-        }
-        main.innerHTML = entireHtml;
+        html += `<a href=${i.url} target='_blank'>more</a></div><hr>`
+        entireHtml += html; 
+    });
+}
+main.innerHTML = entireHtml;
 
-  });
+
+// fetch('https://raw.githubusercontent.com/junh0601/newsScrap/master/news.json')
+//   .then((response) => response.json())
+//   .then((data) => {
+//         if(data.length===0){
+//             entireHtml=`<center><h3>기사가 없습니다.</h3></center>`
+//         }else{
+//             data.forEach( (i) => {
+//                 let html = `
+//                     <div class="img_and_detail">
+//                         <img class="news_img" src=${i.img}>
+//                         <div class="div_detail">
+//                             <h4 class="news_title">${i.title}</h4>
+//                             <small>${i.date}</small>
+//                         </div>
+//                     </div>
+//                     <div class="div_text">          
+//                 `;
+
+//                 i.article.forEach((x)=>{
+//                     const texts = `
+//                         <p>${quoutify(x)}</p>
+//                     `
+//                     html += texts
+//                 });
+
+//                 html += `<a href=${i.url} target='_blank'>more</a></div><hr>`
+//                 entireHtml += html; 
+//             });
+//         }
+//         main.innerHTML = entireHtml;
+
+//   });
 
 const gopast = document.getElementById("gopast")
 const yesterday = year+padmonth+(now.getDate()-1).toString().padStart(2, 0);
 gopast.href = `https://m.yna.co.kr/theme/headlines-history?date=${yesterday}`
-gopast.innerText = "어제 뉴스 보러가기"
+gopast.innerText = "어제 뉴스 보러가기🔗"
 gopast.target = "_blank"

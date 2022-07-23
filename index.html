@@ -17,27 +17,34 @@
         <span id="date">오늘의 뉴스</span>
       </div>
       <h4 id="wed">
-        <img id="weatherIcon" width="70px" height="70px" />
-        <span id="weather">
-          <div id="weather_temp"></div>
-          <div id="weather_pos"></div>
-        </span>
+        <a id="wed_box" href="https://weather.naver.com/">
+          <img id="weatherIcon" width="70px" height="70px" />
+          <span id="weather">
+            <div id="weather_temp"></div>
+            <div id="weather_pos"></div>
+          </span>
+        </a>
       </h4>
       <small>매시간 업데이트됩니다. 기사는 최신순으로 정렬되어있습니다.</small>
     </header>
     <main>
       <div id="innerMain"></div>
-      <center><a id="gopast"></a></center>
+      <h5>
+        <center><a id="gopast"></a></center>
+      </h5>
     </main>
     <footer id="bottom">
       <center>
         <small>기사 출처 | 연합뉴스-주요뉴스의 3줄 요약 스크래핑</small>
       </center>
-      <center>&copy github.com/junh0601 <b>NEWS DIET Project</b></center>
+      <center>
+        &copy <a href="github.com/junh0601">github.com/junh0601</a>
+        <b>NEWS DIET Project</b>
+      </center>
     </footer>
     <div id="fixed">
-      <a href="#bottom">오래된🔽</a>
-      <a href="#top">새로운🔼</a>
+      <a class="move_top_bottom" href="#bottom">오래된🔽</a>
+      <a class="move_top_bottom" href="#top">새로운🔼</a>
     </div>
     <script src="./js/news.js" type="module"></script>
   </body>
