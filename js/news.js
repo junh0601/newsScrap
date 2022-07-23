@@ -1,7 +1,9 @@
 const htmlDate = document.getElementById("date")
 const htmlTime = document.getElementById("time")
 const main = document.getElementById("innerMain")
-const weather = document.getElementById("weather");
+const weatherIcon = document.getElementById("weatherIcon");
+const weatherTemp = document.getElementById("weather_temp");
+const weatherPos = document.getElementById("weather_pos");
 
 const API_KEY = "d2aab5f5c4c9fe0fce6481b412cea172";
 
@@ -11,10 +13,13 @@ function onGeoOk(position) {
   const lat = position.coords.latitude;
   const lon = position.coords.longitude;
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
+  console.log(url);
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      weather.innerText = data.weather[0].main + " / " + data.main.temp+"°C / "+ data.name
+        weatherTemp.innerText = data.main.temp+"°C"
+        weatherPos.innerText =  data.name + "/"+data.sys.country
+      weatherIcon.src=`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
     });
 }
 function onGeoError() {
@@ -25,8 +30,10 @@ navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
 
 // date 
 const now = new Date();
-
-const TextDate = `${now.getFullYear()}년 ${now.getMonth()}월 ${now.getDate()}일`
+const year = now.getFullYear().toString();
+const padmonth = (now.getMonth()+1).toString().padStart(2,"0");
+const paddate = now.getDate().toString().padStart(2,"0");
+const TextDate = `${year}년 ${[padmonth]}월 ${paddate}일`;
 
 function getClock() {
     const date = new Date();
@@ -69,7 +76,7 @@ fetch('https://raw.githubusercontent.com/junh0601/newsScrap/master/news.json')
   .then((response) => response.json())
   .then((data) => {
         if(data.length===0){
-            entireHtml="<center><h3>기사가 없습니다.</h3></center>"
+            entireHtml=`<center><h3>기사가 없습니다.</h3></center>`
         }else{
             data.forEach( (i) => {
                 let html = `
@@ -98,3 +105,8 @@ fetch('https://raw.githubusercontent.com/junh0601/newsScrap/master/news.json')
 
   });
 
+const gopast = document.getElementById("gopast")
+const yesterday = year+padmonth+(now.getDate()-1).toString().padStart(2, 0);
+gopast.href = `https://www.yna.co.kr/theme/headlines-history?date=${yesterday}`
+gopast.innerText = "어제 뉴스 보러가기"
+gopast.target = "_blank"

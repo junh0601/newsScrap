@@ -47,6 +47,13 @@ hr{
     margin: 30px 0;
 }
 
+#wed{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 #fixed{
     position: fixed;
     bottom: 0;
