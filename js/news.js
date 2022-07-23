@@ -76,7 +76,7 @@ fetch('https://raw.githubusercontent.com/junh0601/newsScrap/master/news.json')
                     <div class="img_and_detail">
                         <img class="news_img" src=${i.img}>
                         <div class="div_detail">
-                            <h2 class="news_title">${i.title}</h2>
+                            <h4 class="news_title">${i.title}</h4>
                             <small>${i.date}</small>
                         </div>
                     </div>

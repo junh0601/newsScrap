@@ -4,8 +4,8 @@ ul{
 }
 
 .news_img{
-    width: 100px;
-    height: 100px*0.7;
+    width: 150px;
+    height: 110px;
     object-fit:cover ;
     border-radius: 10px;
     margin-right: 20px;
