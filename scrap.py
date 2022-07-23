@@ -9,7 +9,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 p = re.compile('([A-Z])\w+')
 
-today_news_url = "https://www.yna.co.kr/theme/headlines-history"
+today_news_url = "https://www.yna.co.kr/theme/headlines-history?date=20220723"
 
 indeed_result = requests.get(today_news_url)
 
@@ -41,7 +41,7 @@ for i in datas:
         article.append(i.string)
     news["article"] = article
     newslist.append(news)
-print('스크래핑 완료')
+print(len(newslist), '개의 기사를 스크래핑했습니다.')
 
 with open(os.path.join(BASE_DIR, 'news.json'), 'w+',
           encoding='utf-8') as json_file:
