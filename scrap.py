@@ -9,7 +9,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 p = re.compile('([A-Z])\w+')
 
-today_news_url = "https://www.yna.co.kr/theme/headlines-history?date=20220723"
+today_news_url = "https://www.yna.co.kr/theme/headlines-history"
 
 indeed_result = requests.get(today_news_url)
 
