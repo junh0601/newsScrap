@@ -34,7 +34,8 @@ const now = new Date();
 const year = now.getFullYear().toString();
 const padmonth = (now.getMonth()+1).toString().padStart(2,"0");
 const paddate = now.getDate().toString().padStart(2,"0");
-const TextDate = `${year}년 ${[padmonth]}월 ${paddate}일`;
+const day = [ "일", "월", "화", "수", "목", "금" ,"토"][now.getDay()]
+const TextDate = `${[padmonth]}월 ${paddate}일 (${day})`;
 
 function getClock() {
     const date = new Date();
