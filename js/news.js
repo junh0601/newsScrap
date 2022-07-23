@@ -19,7 +19,7 @@ function onGeoOk(position) {
     .then((data) => {
         weatherTemp.innerText = data.main.temp+"°C"
         weatherPos.innerText =  data.name + "/"+data.sys.country
-      weatherIcon.src=`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+      weatherIcon.src=`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
       weatherIcon.alt=data.weather[0].main
     });
 }
