@@ -20,6 +20,7 @@ function onGeoOk(position) {
         weatherTemp.innerText = data.main.temp+"°C"
         weatherPos.innerText =  data.name + "/"+data.sys.country
       weatherIcon.src=`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+      weatherIcon.alt=data.weather[0].main
     });
 }
 function onGeoError() {
@@ -107,6 +108,6 @@ fetch('https://raw.githubusercontent.com/junh0601/newsScrap/master/news.json')
 
 const gopast = document.getElementById("gopast")
 const yesterday = year+padmonth+(now.getDate()-1).toString().padStart(2, 0);
-gopast.href = `https://www.yna.co.kr/theme/headlines-history?date=${yesterday}`
+gopast.href = `https://m.yna.co.kr/theme/headlines-history?date=${yesterday}`
 gopast.innerText = "어제 뉴스 보러가기"
 gopast.target = "_blank"
