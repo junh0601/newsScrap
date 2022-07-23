@@ -17,7 +17,7 @@ ul{
 
 
 .quoute{
-    background-color: #181818;
+    background-color: #010409;
     color : white;
     border-radius: 5px;
 }
@@ -70,5 +70,5 @@ hr{
 }
 
 header{
-    padding-top: 0;
+    margin-top: 0;
 }
