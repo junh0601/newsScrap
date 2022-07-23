@@ -9,7 +9,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 p = re.compile('([A-Z])\w+')
 
-today_news_url = "https://www.yna.co.kr/theme/headlines-history?date=20220722"
+today_news_url = "https://www.yna.co.kr/theme/headlines-history"
 
 indeed_result = requests.get(today_news_url)
 
@@ -30,7 +30,7 @@ for i in datas:
     news["date"] = i.parent.find("span", "txt-time").string
     news['img'] = "https:" + i.parent.parent.img["src"]
 
-    #news ai summary
+    # news ai summary
     page_result = requests.get(url)
     page_soup = BeautifulSoup(page_result.text, "html.parser")
     page_datas = page_soup.select(
