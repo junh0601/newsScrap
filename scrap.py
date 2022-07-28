@@ -24,11 +24,14 @@ for i in datas:
     id = p.search(i['href']).group()
     url = "https://www.yna.co.kr/view/" + id
 
-    news["id"] = id or ""
-    news["url"] = url or ""
-    news["title"] = i.strong.string or ""
-    news["date"] = i.parent.find("span", "txt-time").string or ""
-    news['img'] = "https:" + i.parent.parent.img["src"] or ""
+    news["id"] = id
+    news["url"] = url
+    news["title"] = i.strong.string
+    news["date"] = i.parent.find("span", "txt-time").string
+    if i.parent.parent.img["src"]:
+        news['img'] = "https:" + i.parent.parent.img["src"]
+    else:
+        news['img'] = ""
 
     # news ai summary
     page_result = requests.get(url)
