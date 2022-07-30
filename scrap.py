@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import json
 import re
 import os
-import datetime as dt
+from datetime import datetime, timezone, timedelta
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -48,8 +48,12 @@ for i in datas:
 print(len(newslist), '개의 기사를 스크래핑했습니다.')
 
 finalResult.append(newslist)
-x = dt.datetime.now()
-date = x.strftime("%Y/%m/%d - %H:%M:%S")
+
+# 시간 출력
+KST = timezone(timedelta(hours=9))
+dt_now = datetime.now(KST)
+date = dt_now.strftime("%Y/%m/%d-%H:%M:%S")
+
 finalResult.append(date)
 print(finalResult[1])
 

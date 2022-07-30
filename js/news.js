@@ -46,11 +46,10 @@ function getClock() {
     htmlTime.innerText = `${hours}:${minutes}:${seconds}`;
   }
   
-  getClock();
-  setInterval(getClock, 1000);
+getClock();
+setInterval(getClock, 1000);
 
 htmlDate.innerText = TextDate;
-
 
 //article
 
