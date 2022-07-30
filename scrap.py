@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import json
 import re
 import os
-import sys
+import datetime as dt
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -17,6 +17,7 @@ soup = BeautifulSoup(indeed_result.text, "html.parser")
 
 datas = soup.select("section > div > ul > li > div > div.news-con > a")
 
+finalResult = []
 newslist = []
 
 for i in datas:
@@ -28,7 +29,10 @@ for i in datas:
     news["url"] = url
     news["title"] = i.strong.string
     news["date"] = i.parent.find("span", "txt-time").string
-    news['img'] = "https:" + i.parent.parent.img["src"]
+    if i.parent.parent.img["src"]:
+        news['img'] = "https:" + i.parent.parent.img["src"]
+    else:
+        news['img'] = ""
 
     # news ai summary
     page_result = requests.get(url)
@@ -43,8 +47,13 @@ for i in datas:
     newslist.append(news)
 print(len(newslist), '개의 기사를 스크래핑했습니다.')
 
+finalResult.append(newslist)
+x = dt.datetime.now()
+date = x.strftime("%Y/%m/%d - %H:%M:%S")
+finalResult.append(date)
+
 with open(os.path.join(BASE_DIR, 'news.json'), 'w+',
           encoding='utf-8') as json_file:
-    json.dump(newslist, json_file, ensure_ascii=False, indent='\t')
+    json.dump(finalResult, json_file, ensure_ascii=False, indent='\t')
 
 print("json 저장 완료")

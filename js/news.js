@@ -4,6 +4,7 @@ const main = document.getElementById("innerMain")
 const weatherIcon = document.getElementById("weatherIcon");
 const weatherTemp = document.getElementById("weather_temp");
 const weatherPos = document.getElementById("weather_pos");
+const update = document.getElementById("update");
 
 const API_KEY = "d2aab5f5c4c9fe0fce6481b412cea172";
 
@@ -77,10 +78,11 @@ function quoutify (str) {
 fetch('https://raw.githubusercontent.com/junh0601/newsScrap/master/news.json')
   .then((response) => response.json())
   .then((data) => {
-        if(data.length===0){
+        if(data[0].length===0){
             entireHtml=`<center><h3>기사가 없습니다.</h3></center>`
         }else{
-            data.forEach( (i) => {
+            update.innerText=`마지막 업데이트 ${data[1]}`;
+            data[0].forEach( (i) => {
                 let html = `
                     <div class="img_and_detail">
                         <img class="news_img" src=${i.img}>
