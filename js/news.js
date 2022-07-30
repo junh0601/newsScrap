@@ -85,7 +85,7 @@ await fetch('https://raw.githubusercontent.com/junh0601/newsScrap/master/news.js
             data[0].forEach( (i) => {
                 let html = `
                     <div id=${i.id} class="newscontainer">
-                        <button class="readBtn">☑️읽지않음</button>
+                        <button class="readBtn">⏺️읽지않음</button>
                         <div class="img_and_detail">
                             <img class="news_img" src=${i.img || "no-image.png"}>
                             <div class="div_detail">
@@ -143,7 +143,7 @@ btn.forEach(i => {
         const classObj = this.parentNode.classList
         let innerStorage = JSON.parse(localStorage.getItem(localId));
         if(classObj.contains("alreadyRead")){
-            i.innerText = "☑️읽지않음"
+            i.innerText = "⏺️읽지않음"
             classObj.remove("alreadyRead")
             innerStorage = innerStorage.filter( (x) => x !== this.parentNode.id)
         }else{
