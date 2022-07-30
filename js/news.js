@@ -84,7 +84,7 @@ fetch('https://raw.githubusercontent.com/junh0601/newsScrap/master/news.json')
             data[0].forEach( (i) => {
                 let html = `
                     <div class="img_and_detail">
-                        <img class="news_img" src=${i.img}>
+                        <img class="news_img" src=${i.img || "no-image.png"}>
                         <div class="div_detail">
                             <h4 class="news_title">${i.title}</h4>
                             <small>${i.date}</small>
