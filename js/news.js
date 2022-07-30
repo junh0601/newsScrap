@@ -9,6 +9,7 @@ const update = document.getElementById("update");
 const API_KEY = "d2aab5f5c4c9fe0fce6481b412cea172";
 
 
+
 //weather
 function onGeoOk(position) {
   const lat = position.coords.latitude;
@@ -28,7 +29,7 @@ function onGeoError() {
   alert("Can't find you. No weather for you.");
 }
 
-navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
+await navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
 
 // date 
 const now = new Date();
@@ -74,7 +75,7 @@ function quoutify (str) {
 }
 
 
-fetch('https://raw.githubusercontent.com/junh0601/newsScrap/master/news.json')
+await fetch('https://raw.githubusercontent.com/junh0601/newsScrap/master/news.json')
   .then((response) => response.json())
   .then((data) => {
         update.innerText=`마지막 업데이트 ${data[1]}`;
@@ -83,14 +84,17 @@ fetch('https://raw.githubusercontent.com/junh0601/newsScrap/master/news.json')
         }else{
             data[0].forEach( (i) => {
                 let html = `
-                    <div class="img_and_detail">
-                        <img class="news_img" src=${i.img || "no-image.png"}>
-                        <div class="div_detail">
-                            <h4 class="news_title">${i.title}</h4>
-                            <small>${i.date}</small>
+                    <div id=${i.id} class="newscontainer">
+                        <button class="readBtn">🔲읽지않음</button>
+                        <div class="img_and_detail">
+                            <img class="news_img" src=${i.img || "no-image.png"}>
+                            <div class="div_detail">
+                                <h4 class="news_title">${i.title}</h4>
+                                <small>${i.date}</small>
+                                <a href=${i.url} target='_blank'>more</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="div_text">          
+                        <div class="div_text">          
                 `;
 
                 i.article.forEach((x)=>{
@@ -100,8 +104,12 @@ fetch('https://raw.githubusercontent.com/junh0601/newsScrap/master/news.json')
                     html += texts
                 });
 
-                html += `<a href=${i.url} target='_blank'>more</a></div><hr>`
+                html += `
+                        </div>
+                        <hr>
+                        </div>`
                 entireHtml += html; 
+                
             });
         }
         main.innerHTML = entireHtml;
@@ -113,3 +121,38 @@ const yesterday = year+padmonth+(now.getDate()-1).toString().padStart(2, 0);
 gopast.href = `https://m.yna.co.kr/theme/headlines-history?date=${yesterday}`
 gopast.innerText = "어제 뉴스 보러가기🔗"
 gopast.target = "_blank"
+
+//local strage
+const localId = `${[padmonth]}${paddate}(${day})`
+if (!localStorage.getItem(localId)){
+    localStorage.clear();
+    localStorage.setItem(localId, JSON.stringify([]))
+    }
+const read = JSON.parse(localStorage.getItem(localId));
+read.forEach( i => {
+    const alreadyRead = document.getElementById(i);
+    alreadyRead.classList.add("alreadyRead");
+})
+
+const alreadyReadBtn = document.querySelectorAll(`.alreadyRead > .readBtn`)
+alreadyReadBtn.forEach(x => x.innerText = "✅읽음")
+
+const btn = document.querySelectorAll(".readBtn")
+btn.forEach(i => {
+    i.addEventListener("click", function(event){
+        const classObj = this.parentNode.classList
+        let innerStorage = JSON.parse(localStorage.getItem(localId));
+        if(classObj.contains("alreadyRead")){
+            i.innerText = "🔲읽지않음"
+            classObj.remove("alreadyRead")
+            innerStorage = innerStorage.filter( (x) => x !== this.parentNode.id)
+        }else{
+            i.innerText = "✅읽음"
+            classObj.add("alreadyRead")
+            innerStorage.push(this.parentNode.id);
+            
+        }
+        localStorage.setItem(localId, JSON.stringify(innerStorage));
+        console.log(JSON.parse(localStorage.getItem(localId)))
+    })
+})

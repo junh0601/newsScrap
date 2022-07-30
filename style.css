@@ -97,6 +97,9 @@ footer{
     .move_top_bottom{
         background-color: rgba(32, 33, 36, 0.7);
     }
+    .alreadyRead > .readBtn{
+        color : gray;
+    }
   }
 @media (prefers-color-scheme: dark) {
     body{
@@ -114,9 +117,34 @@ footer{
     .move_top_bottom{
         background-color: rgba(0, 0, 0, 0.7);
     }
+    .alreadyRead > .readBtn{
+        color : gray;
+    }
 }
 
 
 #update{
     font-size: small;
+}
+
+
+.readBtn {
+    margin : 0;
+    border: 0;
+    padding : 2px;
+    color : white;
+    background-color: rgba(0, 0, 0, 0);
+
+
+}
+
+
+ 
+.alreadyRead > .img_and_detail{
+    opacity: 0.1;
+}
+
+
+.alreadyRead > .div_text {
+    display: none;
 }
