@@ -77,10 +77,10 @@ function quoutify (str) {
 fetch('https://raw.githubusercontent.com/junh0601/newsScrap/master/news.json')
   .then((response) => response.json())
   .then((data) => {
+        update.innerText=`마지막 업데이트 ${data[1]}`;
         if(data[0].length===0){
             entireHtml=`<center><h3>기사가 없습니다.</h3></center>`
         }else{
-            update.innerText=`마지막 업데이트 ${data[1]}`;
             data[0].forEach( (i) => {
                 let html = `
                     <div class="img_and_detail">
