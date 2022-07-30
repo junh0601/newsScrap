@@ -97,10 +97,10 @@ footer{
     .move_top_bottom{
         background-color: rgba(32, 33, 36, 0.7);
     }
-    .alreadyRead > .readBtn{
-        color : gray;
+    .readBtn{
+        color : black;
     }
-  }
+    
 @media (prefers-color-scheme: dark) {
     body{
         background-color: #202124;
@@ -117,9 +117,10 @@ footer{
     .move_top_bottom{
         background-color: rgba(0, 0, 0, 0.7);
     }
-    .alreadyRead > .readBtn{
-        color : gray;
+    .readBtn{
+        color : white;
     }
+    
 }
 
 
@@ -147,4 +148,8 @@ footer{
 
 .alreadyRead > .div_text {
     display: none;
+}
+
+.alreadyRead > .readBtn{
+    color : gray;
 }
