@@ -29,9 +29,9 @@ for i in datas:
     news["url"] = url
     news["title"] = i.strong.string
     news["date"] = i.parent.find("span", "txt-time").string
-    if i.parent.parent.img["src"]:
-        news['img'] = "https:" + i.parent.parent.img["src"]
-    else:
+    try:
+        news['img'] = i.parent.parent.img["src"]
+    except:
         news['img'] = ""
 
     # news ai summary
@@ -51,6 +51,7 @@ finalResult.append(newslist)
 x = dt.datetime.now()
 date = x.strftime("%Y/%m/%d - %H:%M:%S")
 finalResult.append(date)
+print(finalResult[1])
 
 with open(os.path.join(BASE_DIR, 'news.json'), 'w+',
           encoding='utf-8') as json_file:
