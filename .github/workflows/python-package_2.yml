@@ -12,7 +12,7 @@ on:
         required: false
         default: "The Octoverse"
   schedule:
-    - cron: "*/60 * * * *" # 주기적으로 실행하기 위한 스케줄링 - cron 설정
+    - cron: "@hourly" # 주기적으로 실행하기 위한 스케줄링 - cron 설정
 jobs:
   build:
     runs-on: ubuntu-latest
